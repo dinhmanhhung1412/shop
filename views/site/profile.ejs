@@ -1,0 +1,140 @@
+<%- include('../public/header',{cart:cart}); -%>
+<div class="container bootstrap snippet ptb-80" style="margin-bottom: 50px;">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-title mb-4">
+                        <div class="d-flex justify-content-start">
+                            <div class="image-container">
+                                <img src="http://placehold.it/150x150" style="width: 150px; height: 150px"
+                                    class="img-thumbnail" />
+                            </div>
+                            <div class="userData ml-3">
+                                <h2 class="d-block" style="font-size: 1.5rem; font-weight: bold"><a
+                                        href="javascript:void(0);"><%= user.fullName %></a></h2>
+                                <h6 class="d-block"><a href="javascript:void(0)">1,500</a> Product Bought</h6>
+                                <h6 class="d-block"><a href="javascript:void(0)">300</a> Orders</h6>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="basicInfo-tab" data-toggle="tab" href="#basicInfo"
+                                        role="tab" aria-controls="basicInfo" aria-selected="true">Basic Info</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="orders-tab" data-toggle="tab" href="#orders_tab" role="tab"
+                                        aria-controls="orders_tab" aria-selected="false">Order</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="something-tab" data-toggle="tab" href="#something_tab"
+                                        role="tab" aria-controls="something_tab" aria-selected="false">Something</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content ml-1" id="myTabContent">
+                                <div class="tab-pane fade show active" id="basicInfo" role="tabpanel"
+                                    aria-labelledby="basicInfo-tab">
+                                    <div class="row">
+                                        <div class="col-sm-3 col-md-2 col-5">
+                                            <label style="font-weight:bold;">Full Name</label>
+                                        </div>
+                                        <div class="col-md-8 col-6">
+                                            <%= user.fullName %>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-sm-3 col-md-2 col-5">
+                                            <label style="font-weight:bold;">Username</label>
+                                        </div>
+                                        <div class="col-md-8 col-6">
+                                            <%= user.username %>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="row">
+                                        <div class="col-sm-3 col-md-2 col-5">
+                                            <label style="font-weight:bold;">Address</label>
+                                        </div>
+                                        <div class="col-md-8 col-6">
+                                            <%= user.address %>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <!--Tab-->
+                                <div class="tab-pane fade" id="orders_tab" role="tabpanel" aria-labelledby="orders-tab">
+                                    <div class="row">
+                                        <div class="col-sm">
+                                            <h5>Filter:</h5>
+                                        </div>
+                                        <div class="col-lg-11">
+                                            <select id="status-select">
+                                                <option value="0">All</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <div class="table-responsive table-bordered">
+                                        <table class="table">
+                                            <thead class="thead-dark">
+                                                <tr>
+                                                    <th>#</th>
+                                                    <th class="text-center">User</th>
+                                                    <th class="text-center">Total</th>
+                                                    <th class="text-center">Status</th>
+                                                    <th class="text-center">Cancel</th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <% order.forEach((item)=>{ %>
+                                                <tr class="accordion-toggle collapsed alert" id="">
+                                                    <td class="expand-button" id="" data-toggle="collapse"
+                                                        data-parent="" href=""></td>
+                                                    <td class="text-center">
+                                                        <%= item.fullName %>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        $ <%= item.total %>
+                                                    </td>
+                                                    <td class="text-center">
+                                                        <%= item.status %>
+                                                    </td>
+
+                                                    <td class="text-center">
+                                                        <% if(item.status == 'Đang xử lý'){ %>
+                                                        <button class="btn btn-danger" id="" onclick="">
+                                                            Cancel
+                                                        </button>
+                                                        <% } %>
+                                                    </td>
+
+
+
+                                                </tr>
+                                                <%})%>
+
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="something_tab" role="tabpanel"
+                                    aria-labelledby="something-tab">
+                                    Updating...
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include('../public/footer'); -%>

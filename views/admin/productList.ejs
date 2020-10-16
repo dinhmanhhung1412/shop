@@ -1,0 +1,103 @@
+<%- include('share/header'); -%>
+<link href="assetAdmin/plugins/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+<link href="assetAdmin/plugins/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+<link href="assetAdmin/plugins/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+
+
+<link href="assetAdmin/loading-spinner.css" rel="stylesheet" />
+
+<div class="card-body">
+    <h1 class="header-title">Product List</h1>
+    <p class="text-muted">
+        <a href="/createproduct">Create New</a>
+    </p>
+
+    <table class="table table-bordered" id="product-table">
+        <thead>
+            <tr>
+                <th>
+                    Image
+                </th>
+                <th class="text-center">
+                    ID
+                </th>
+                <th class="text-center">
+                    Name
+                </th>
+                <th class="text-center">
+                    Price
+                </th>
+
+                <th class="text-center">
+                    Category
+                </th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <% prod.forEach((item)=>{ %>
+                <tr>
+                    <td>
+                        <img src="<%= item.productImage %>" style="max-height: 50px;" />
+                    </td>
+                    <td class="text-center">
+                        <%= item._id %>
+                    </td>
+                    <td class="text-center">
+                        <%= item.productName %>
+                    </td>
+                    <td class="text-center">
+                        <%= item.productPrice %>
+                    </td>
+                    <td class="text-center">
+                        <%= item.cate %>
+                    </td>
+    
+                    <td class="text-center">
+    
+                        <button class="btn btn-sm btn-primary" type="submit" value="Edit" id="edit-<%= item._id %>"
+                            onclick="window.location.href='/updateproduct/<%= item._id %>'">
+                            <i class="mdi mdi-border-color"></i>
+                        </button>
+                        <button class="btn btn-sm btn-danger" type="button" value="Delete" id="delete-<%= item._id %>"
+                            onclick="return DeleteItem('<%= item._id %>')">
+                            <i class="mdi mdi-delete"></i>
+                        </button>
+                    </td>
+    
+                </tr>
+            <% }) %>
+
+        </tbody>
+    </table>
+
+</div>
+<%- include('share/footer'); -%>
+<script src="assetAdmin/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="assetAdmin/plugins/datatables/dataTables.bootstrap4.min.js"></script>
+<script src="assetAdmin/plugins/datatables/dataTables.responsive.min.js"></script>
+<script src="assetAdmin/plugins/datatables/responsive.bootstrap4.min.js"></script>
+<script src="assetAdmin/js/sweetalert.min.js"></script> 
+    
+<script>
+    $(document).ready(function () {
+        $(function () {
+            $('#product-table').DataTable()
+        });
+    });
+
+    function DeleteItem(id) {
+            swal({
+                title: `DELETE item with id: ${id}?`,
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        window.location.href='/deleteproduct/' +id
+                    }
+                });
+        };
+
+</script>

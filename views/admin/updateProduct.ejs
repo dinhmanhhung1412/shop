@@ -1,0 +1,68 @@
+<base href="/">
+<%- include("./share/header"); -%>
+
+<!-- <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css'> -->
+<h2>Update Product</h2>
+
+<form action="/updateproduct/<%= prod._id %>" enctype="multipart/form-data" method="post"  id="">
+
+    <div class="row">
+        <div class="input-field col-lg-2 s12">
+            <label>Name</label>
+        </div>
+        <div class="input-field col s12">
+            <input id="product-name" name="productname" value="<%= prod.productName %>" type="text" class="validate">
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="input-field col-lg-2 s12">
+            <label>Price</label>
+        </div>
+        <div class="input-field col s12">
+            <input id="product-price" name="productprice" value="<%= prod.productPrice %>" type="text" class="validate">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="input-field col-lg-2 s12">
+            <label>Category</label>
+        </div>
+        <div class="input-field col s12">
+            <select name="cate">
+                <% cate.forEach((item)=>{ %>
+                <option value="<%= item.cateName %>"><%= item.cateName %></option>
+                <%  }) %>
+                
+            </select>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="input-field col-lg-2 s12">
+            <label>Show Image</label>
+        </div>
+        <div class="input-field col s12">
+            <input id="image" name="image" type="file" class="validate">
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="input-field col-lg-2 s12">
+            <label>Decription</label>
+        </div>
+        <div class="input-field col s12">
+            <textarea placeholder="Decription" id="text-area" name="productdescription"></textarea>
+        </div>
+    </div>
+
+    <h5 class="text-danger info-text"></h5>
+
+    <button class="btn waves-effect waves-light" type="submit" name="action">
+        <span>Update </span><i class="mdi mdi-send"></i>
+    </button>
+</form>
+
+<%- include("./share/footer"); -%>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js'></script>

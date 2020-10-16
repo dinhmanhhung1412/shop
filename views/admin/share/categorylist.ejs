@@ -1,0 +1,71 @@
+<link href="assetAdmin/plugins/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+<link href="assetAdmin/plugins/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+<link href="assetAdmin/plugins/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+
+<div class="card-body">
+    <table class="table table-bordered" id="category-table">
+        <thead>
+            <tr>
+               
+                <th style="display:none;"></th>
+                <th class="text-center">
+                    Name
+                </th>
+                <th class="text-center">
+                    Meta Keyword
+                </th>
+                <th class="text-center">
+                    Created Date
+                </th>
+                <th class="text-center">Options</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% cate.forEach((item)=>{ %>
+            <tr id="row-@item.CategoryID">
+               
+                <td class="text-center" id="cate-@item.CategoryID-text">
+                    <%= item.cateName %>
+                </td>
+                <td class="text-center">
+                    <%= item.cateName %>
+                </td>
+                <td class="text-center">
+                    <%= item.createdDate %>
+                </td>
+                <td class="text-center">
+
+                    <button class="btn btn-sm btn-primary" id="edit-<%= item._id %>" type="button" value="Edit"
+                        onclick="return EditItem('<%= item._id %>')">
+                        <i class="mdi mdi-border-color"></i>
+                    </button>
+
+
+                    <button class="btn btn-sm btn-danger" id="delete-<%= item._id %>" type="submit" value="Delete"
+                        onclick="return DeleteItem('<%= item._id %>')">
+                        <i class="mdi mdi-delete"></i>
+                    </button>
+
+                    <button class="btn btn-sm btn-success" id="save-<%= item._id %>" type="submit" value="Save">
+                        <i class="mdi mdi-check"></i>
+                    </button>
+                </td>
+            </tr>
+            <% }) %>
+
+
+        </tbody>
+    </table>
+</div>
+
+<script src="assetAdmin/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="assetAdmin/plugins/datatables/dataTables.bootstrap4.min.js"></script>
+<script src="assetAdmin/plugins/datatables/dataTables.responsive.min.js"></script>
+<script src="assetAdmin/plugins/datatables/responsive.bootstrap4.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $(function () {
+            $('#category-table').DataTable()
+        });
+    });
+</script>

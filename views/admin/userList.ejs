@@ -1,0 +1,91 @@
+<base href="/">
+<%- include('share/header'); -%>
+<link href="assetAdmin/plugins/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+<link href="assetAdmin/plugins/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+<link href="assetAdmin/plugins/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+
+
+<link href="assetAdmin/loading-spinner.css" rel="stylesheet" />
+
+<div class="card-body">
+    <h1 class="header-title">User List</h1>
+    <p class="text-muted">
+        <!-- <a href="/createproduct">Create New</a> -->
+    </p>
+
+    <table class="table table-bordered" id="product-table">
+        <thead>
+            <tr>
+               
+                <th class="text-center">
+                    Username
+                </th>
+                <th class="text-center">
+                    FullName
+                </th>
+                <th class="text-center">
+                    Address
+                </th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <% users.forEach((user)=>{ %>
+                <tr>
+
+                    <td class="text-center">
+                        <%= user.username %>
+                    </td>
+                    <td class="text-center">
+                        <%= user.fullName %>
+                    </td>
+                    <td class="text-center">
+                        <%= user.address %>
+                    </td>
+
+                    <td class="text-center">
+    
+                        <button class="btn btn-sm btn-primary" type="submit" value="Edit" id="">
+                            <i class="mdi mdi-border-color"></i>
+                        </button>
+                        <button class="btn btn-sm btn-danger" type="button" value="Delete" id="">
+                            <i class="mdi mdi-delete"></i>
+                        </button>
+                    </td>
+    
+                </tr>
+            <% }) %>
+
+        </tbody>
+    </table>
+
+</div>
+<%- include('share/footer'); -%>
+<script src="assetAdmin/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="assetAdmin/plugins/datatables/dataTables.bootstrap4.min.js"></script>
+<script src="assetAdmin/plugins/datatables/dataTables.responsive.min.js"></script>
+<script src="assetAdmin/plugins/datatables/responsive.bootstrap4.min.js"></script>
+<script src="assetAdmin/js/sweetalert.min.js"></script> 
+    
+<script>
+    $(document).ready(function () {
+        $(function () {
+            $('#product-table').DataTable()
+        });
+    });
+
+    // function DeleteItem(id) {
+    //         swal({
+    //             title: `DELETE item with id: ${id}?`,
+    //             icon: "warning",
+    //             buttons: true,
+    //             dangerMode: true,
+    //         })
+    //             .then((willDelete) => {
+    //                 if (willDelete) {
+    //                     window.location.href='/deleteproduct/' +id
+    //                 }
+    //             });
+    //     };
+
+</script>

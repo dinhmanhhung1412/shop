@@ -1,0 +1,83 @@
+<base href="/">
+<%- include('./share/header') -%>
+<link href="~/Areas/Admin/assets/plugins/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+<link href="~/Areas/Admin/assets/plugins/datatables/buttons.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+<link href="~/Areas/Admin/assets/plugins/datatables/responsive.bootstrap4.min.css" rel="stylesheet" type="text/css" />
+
+<h2>OrderList</h2>
+
+<div class="row">
+    <div class="col-sm" id="order-partial">
+        <table class="table table-bordered" id="order-table">
+            <thead>
+                <tr>
+                    <th class="text-center">
+                        Username
+                    </th>
+                    <th class="text-center">
+                       FullName
+                    </th>
+                    <th class="text-center">
+                        Address
+                    </th>
+                    <th class="text-center">
+                        Total
+                    </th>
+                    <th class="text-center">
+                        Status
+                    </th class="text-center">
+                    
+                    <th class="text-center"v></th>
+                </tr>
+            </thead>
+            <tbody>
+                <% order.forEach((item)=>{ %>
+                    <tr>
+                        <td class="text-center">
+                           <%= item.username %>
+                        </td>
+                        <td class="text-center">
+                            <%= item.fullName %>
+                        </td>
+                        <td class="text-center">
+                            <%= item.address %>
+                        </td>
+                        <td class="text-center">
+                            <%= item.total %>
+                        </td>
+                        <td class="text-center"> 
+                            <select id="orderstatus-@item.OrderID" onchange="return ChangeOrder('@item.OrderID', '@item.OrderStatusID')">
+                                
+                                    <option value="<%= item.status %>" selected="selected"><%= item.status %></option>
+                              
+ 
+                            </select>
+                        </td>
+                        <td class="text-center">
+                            <button class="btn btn-sm btn-success"
+                                    type="submit" value="Save"
+                                    id="save-@item.OrderID"
+                                    onclick="return SaveEdit('@item.OrderID')">
+                                <i class="mdi mdi-check"></i>
+                            </button>
+                        </td>
+                    </tr>
+                <% }) %>
+                
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<%- include('./share/footer') -%>
+<script src="~/Areas/Admin/assets/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="~/Areas/Admin/assets/plugins/datatables/dataTables.bootstrap4.min.js"></script>
+<script src="~/Areas/Admin/assets/plugins/datatables/dataTables.responsive.min.js"></script>
+<script src="~/Areas/Admin/assets/plugins/datatables/responsive.bootstrap4.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $(function () {
+            $('#order-table').DataTable()
+        });
+    });
+</script>

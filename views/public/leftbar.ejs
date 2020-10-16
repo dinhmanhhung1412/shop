@@ -1,0 +1,71 @@
+
+            <div class="shop-wrapper fluid-padding-2 pt-120 pb-150">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <div class="product-sidebar-area pr-60">
+                                <div class="sidebar-widget pb-55">
+                                    <h3 class="sidebar-widget">Search Products</h3>
+                                    <div class="sidebar-search">
+                                        <form action="/search" method="POST">
+                                            <input type="text" name="searchString" placeholder="Search Products...">
+                                            <button type="submit"><i class="ti-search"></i></button>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="sidebar-widget pb-50">
+                                    <h3 class="sidebar-widget">by categories</h3>
+                                    <div class="widget-categories">
+                                        <ul>
+                                            <% cate.forEach((item)=>{ %>
+                                                <li><a href="/category/<%= item.cateName %>"><%= item.cateName %></a></li>
+                                            <% }) %>
+                                            
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="sidebar-widget mb-55">
+                                    <h3 class="sidebar-widget">by price</h3>
+                                    <form action="/filter" method="post">
+                                     <div class="price_filter mr-60">
+                                        
+                                        <div class="price_slider_amount">
+                                            <div class="label-input">
+                                                <label>price : </label>
+                                                <input type="number" id="amount" name="price"  placeholder="Add Your Price" />
+                                            </div>
+                                            <button type="submit">Filter</button> 
+                                        </div>
+                                    </div>   
+                                    </form>
+                                    
+                                </div>
+                                <div class="sidebar-widget mb-55">
+                                    <h3 class="sidebar-widget">by color</h3>
+                                    <div class="product-color">
+                                        <ul>
+                                            <li class="blue">b</li>
+                                            <li class="yellow">y</li>
+                                            <li class="gray">g</li>
+                                            <li class="puce">pu</li>
+                                            <li class="black">b</li>
+                                            <li class="pink">p</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="sidebar-widget mb-45">
+                                    <h3 class="sidebar-widget">product tags</h3>
+                                    <div class="product-tags">
+                                        <ul>
+                                            <li><a href="#">Clothing</a></li>
+                                            <li><a href="#">Bag</a></li>
+                                            <li><a href="#">Women</a></li>
+                                            <li><a href="#">Tie</a></li>
+                                            <li><a href="#">Women</a></li>
+                                            <li><a href="#">Dress</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                        </div>
